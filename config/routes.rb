@@ -1,4 +1,7 @@
 MooreDemo::Application.routes.draw do
+  devise_for :users
+  match '/auth/facebook/callback' => 'services#create' 
+  resources :services, :only => [:index, :create, :destroy]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +51,7 @@ MooreDemo::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'services#index'
 
   # See how all your routes lay out with "rake routes"
 
